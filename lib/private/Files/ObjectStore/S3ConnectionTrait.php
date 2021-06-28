@@ -130,7 +130,7 @@ trait S3ConnectionTrait {
 			'signature_provider' => \Aws\or_chain([self::class, 'legacySignatureProvider'], ClientResolver::_default_signature_provider()),
 			'csm' => false,
 		];
-		if (isset($this->params['proxy'])) {
+		if ($this->getProxy()) {
 			$options['http'] = [ 'proxy' => $this->params['proxy'] ];
 		}
 		if (isset($this->params['legacy_auth']) && $this->params['legacy_auth']) {
